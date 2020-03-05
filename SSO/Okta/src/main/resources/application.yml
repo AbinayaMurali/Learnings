@@ -1,0 +1,10 @@
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-alias: spring
+    key-store: <<keystore path>>
+    key-store-password: <<keystore password>>
+    key-password: <<keystore password>>
+    
+security.saml2.metadata-url: <<SAML Metadata URL from Okta>>

@@ -1,0 +1,19 @@
+<configuration debug="false">
+	<appender name="consoleAppender"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+			<customFields>{"application":"DEV-Vault-Starter","type":"log","data_version":"2","roletype":"gts"}
+			</customFields>
+			<fieldNames>
+				<message>description</message>
+				<version>[ignore]</version>
+			</fieldNames>
+		</encoder>
+	</appender>
+	<logger name="jsonLogger" additivity="false" level="DEBUG">
+		<appender-ref ref="consoleAppender" />
+	</logger>
+	<root level="INFO">
+		<appender-ref ref="consoleAppender" />
+	</root>
+</configuration>

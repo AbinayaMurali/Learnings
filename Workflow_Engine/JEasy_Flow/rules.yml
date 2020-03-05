@@ -1,0 +1,51 @@
+---
+name: "create annual review rule for Manager"
+description: "HR submits request to Manager"
+priority: 1
+condition: "request.role == 'HR' && request.action == 'notify manager'"
+actions:
+- "request.message='Please send Annual Review for Emaployee';"
+- "request.status ='Review - Incomplete';"
+- "request.assigned_to ='Manager';"
+- "facts.put('request', request);"
+---
+name: "create annual review rule for Employee"
+description: "HR submits request to Employee"
+priority: 2
+condition: "request.role == 'HR' && request.action == 'notify employee'"
+actions:
+- "request.message='Please complete your Annual Review';"
+- "request.status ='Review - Incomplete';"
+- "request.assigned_to ='Employee';"
+- "facts.put('request', request);"
+---
+name: "get feedback annual review rule"
+description: "Manager submits request to Team Lead"
+priority: 3
+condition: "request.role == 'Manager' && request.action == 'Get Feedback'"
+actions:
+- "request.message='Please give feedback about performance of employees';"
+- "request.status ='Review - Inprogress';"
+- "request.assigned_to ='Team Lead';"
+- "facts.put('request', request);"
+---
+name: "Employee submit annual review rule"
+description: "Employee submits review to Manager"
+priority: 4
+condition: "request.role == 'Employee' && request.action == 'Submit'"
+actions:
+- "request.message='Please provide feedback for submitted review';"
+- "request.status ='Review - Inprogress';"
+- "request.assigned_to ='Manager';"
+- "facts.put('request', request);"
+---
+name: "Manager submit annual review rule"
+description: "Manager approves Employee review"
+priority: 5
+condition: "request.role == 'Manager' && request.action == 'Approves'"
+actions:
+- "request.message='I approve the review aubmitted by Employee';"
+- "request.status ='Review - Approved';"
+- "request.assigned_to ='HR';"
+- "facts.put('request', request);"
+---
